@@ -1,14 +1,14 @@
-export function increment() {
+export const INCREMENT = () => {
     return {
         type: 'INCREMENT'
     }
 }
-export function decrement() {
+export const DECREMENT = () => {
     return {
         type: 'DECREMENT'
     }
 }
-export function reset() {
+export const RESET = () => {
     return {
         type: 'RESET'
     }

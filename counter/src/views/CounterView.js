@@ -1,21 +1,36 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { incrementCounter, decrementCounter, resetCounter } from '../redux/actionCreator';
 class CounterView extends Component {
     render() {
-        const { counter, increment, decrement, reset } = this.props;
         return (
             <div className="App">
-                <div>{counter}</div>
+                <div>{this.props.counter}</div>
                 <div>
-                    <button onClick={increment}>Increment by 1</button>
+                    <button onClick={() => this.props.increment()}>Increment by 1</button>
                 </div>
                 <div>
-                    <button onClick={decrement}>Decrement by 1</button>
+                    <button onClick={() => this.props.decrement()}>Decrement by 1</button>
                 </div>
                 <div>
-                    <button onClick={reset}>Reset</button>
+                    <button onClick={() => this.props.reset()}>Reset</button>
                 </div>
             </div>
         );
     }
 }
-export default CounterView;
+
+const mapDispatchToProps = dispatch => ({
+    increment: () => dispatch(incrementCounter()),
+    decrement: () => dispatch(decrementCounter()),
+    reset: () => dispatch(resetCounter())
+});
+
+const mapStateToProps = state => {
+    let {
+        counter
+    } = state;
+    return {counter: counter}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CounterView);

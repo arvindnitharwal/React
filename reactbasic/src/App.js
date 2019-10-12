@@ -13,10 +13,9 @@ import Home from '../src/components/Home';
 const App = props => {
   return (
     <Router>
-        <Route>
-          path="*",
-          component={Home}
-        </Route>
+        <Route
+          path="*"
+          component={Home}/>
         </Router>
   )
 }
